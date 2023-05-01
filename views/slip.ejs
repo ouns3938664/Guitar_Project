@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Slip Data</title>
+    <link rel="stylesheet" href="/styleSlip.css">
+    <script src="Show_DB.js"></script>
+  </head>
+  <body>
+    <h1>Slip Data</h1>
+    <div class="container">
+        <button onclick="filterTable('Electric Guitar')">Electric Guitar</button>
+        <button onclick="filterTable('Bass Guitar')">Bass Guitar</button>
+        <button onclick="filterTable('Acoustic Guitar')">Acoustic Guitar</button>
+        <button onclick="filterTable('Accessories')">Accessories</button>
+        <button onclick="showAll()">Show All</button>
+        <a href="/order"><button>Back</button></a>
+      </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Address</th>
+          <th>Photo</th>
+          <th>Type</th>
+          <th>Type ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% slips.forEach(function(slip) { %>
+            <tr class="guitar-row">
+            <td><%= slip.id %></td>
+            <td><%= slip.address %></td>
+            <td><img src="data:image/jpeg;base64,<%= slip.pic %>" /></td>
+            <td><%= slip.type %></td>
+            <td><%= slip.typeID %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>

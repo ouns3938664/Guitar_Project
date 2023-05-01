@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Order Bass,Electric</title>
+    <link rel="stylesheet" href="/styleTestDB.css">
+  </head>
+  <body>
+    <h1>Order Data</h1>
+    <div class="container">
+      <button onclick="filterTable('Electric Guitar')">Electric Guitar</button>
+      <button onclick="filterTable('Bass Guitar')">Bass</button>
+      <button onclick="showAll()">All</button>
+      <a href="/acoustic_order"><button>Acoustic Guitar</button></a>
+      <a href="/accessories_order"><button>Accessories</button></a>
+      <a href="/slip"><button>Slip</button></a>
+      <a href="/"><button>Back</button></a>
+    </div>
+    <table id="guitarTable">
+      <tr>
+        <th>Color</th>
+        <th>Pickup</th>
+        <th>Neck</th>
+        <th>Type</th>
+        <th>Cost</th>
+      </tr>
+      <% obj.print.forEach(function(row) { %>
+      <tr class="guitar-row">
+        <td><%= row.color %></td>
+        <td><%= row.pickup %></td>
+        <td><%= row.neck %></td>
+        <td><%= row.type %></td>
+        <td><%= row.cost %></td>
+      </tr>
+      <% }); %>
+    </table>
+
+    <script src="Show_DB.js"></script>
+  </body>
+</html>

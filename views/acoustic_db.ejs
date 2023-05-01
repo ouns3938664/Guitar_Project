@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Order Acoustic</title>
+    <link rel="stylesheet" href="/styleTestDB.css">
+  </head>
+  <body>
+    <h1>Order Data</h1>
+    <div class="container">
+      <a href="/order"><button>Back</button></a>
+    </div>
+    <table id="guitarTable">
+        <tr>
+          <th>Top</th>
+          <th>Body</th>
+          <th>Neck</th>
+          <th>Bridge</th>
+          <th>Type</th>
+          <th>Cost</th>
+        </tr>
+        <% obj.print.forEach(function(row) { %>
+        <tr class="guitar-row">
+          <td><%= row.top %></td>
+          <td><%= row.body %></td>
+          <td><%= row.neck %></td>
+          <td><%= row.bridge %></td>
+          <td><%= row.type %></td>
+          <td><%= row.cost %></td>
+        </tr>
+        <% }); %>
+      </table>
+  </body>
+</html>

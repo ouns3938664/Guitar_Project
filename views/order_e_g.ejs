@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Guitar</title>
+    <script src ="gdat.js"></script>
+    <link rel="stylesheet" href="/styleE.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Guitar Modifying</h1>
+
+        <h2 id="gName1"></h2>
+        <style>
+            div1 {
+                display: inline-block;
+                margin-right: 200px;
+            }
+        </style>
+
+        <div1>    
+            <h2>Electric Guitar</h2>
+            <p><strong>Color: </strong><span id="gColor"></span></p>
+            <p><strong>Pickup: </strong><span id="gPickup"></span></p>
+            <p><strong>Neck: </strong><span id="gNeck"></span></p>
+            <p><strong>Cost: </strong><span id="gCost"></span></p>
+        </div1>
+
+        <form method="POST" action="/order_guitar">
+            <div class="form-group">
+                <label for="colorSelect">Modify Color:</label>
+                <select id="colorSelect" class="form-control">
+                    <option value="">Select Color</option>
+                    <option value="Red">Red</option>
+                    <option value="Black">Black</option>
+                    <option value="Sunburst">Sunburst</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pickupSelect">Modify Pickup:</label>
+                <select id="pickupSelect" class="form-control">
+                    <option value="">Select Pickup</option>
+                    <option value="Humbucker">Humbucker</option>
+                    <option value="Trembucker">Trembucker</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="neckSelect">Modify Neck:</label>
+                <select id="neckSelect" class="form-control">
+                    <option value="">Select Neck</option>
+                    <option value="Ebony">Ebony</option>
+                    <option value="Maple">Maple</option>
+                </select>
+            </div>
+
+            <input type="hidden" name="color" id="colorDisplay" value="">
+            <input type="hidden" name="pickup" id="pickupDisplay" value="">
+            <input type="hidden" name="neck" id="neckDisplay" value="">
+            <input type="hidden" name="type" value="Electric Guitar">
+            <input type="hidden" name="cost" id="gCostDisplay" value="">
+
+            <button type="button" class="btn btn-primary" onclick="changeGuitarE()">Submit</button>
+            <button type="submit" class="btn btn-primary">Order</button>
+        </form>
+    </div>
+</body>
+</html>

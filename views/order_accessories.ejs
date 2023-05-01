@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Accessories </title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styleaccess.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>    
+</head>
+<body>
+    <Nav>
+        <div class="nav-container">
+            <a href="index.html"></a>
+             <img src="/images/logo.png" class="logonav">
+
+             <div class="nav-profile">
+                <p class="nav-profile-name">Bearbug</p>
+                <div onclick="openCart()" style="cursor: pointer;" class="nav-profile-cart">
+                  <i class="fas fa-cart-shopping"></i>
+                  <div id="cartcount" class="cartcount" style="display: none;">
+                    0
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+    </Nav>
+   <div class="container">
+    <div class="sidebar">
+        <input onkeyup="searchsomething(this)" id="txt_search" type="text" class="sidebar-search" placeholder="Search something...">
+
+        <a onclick="searchproduct('all')" class="sidebar-items">
+            All product
+          </a>
+        <a onclick="searchproduct('string')" class="sidebar-items">
+            String
+          </a>
+        <a onclick="searchproduct('tuner')" class="sidebar-items">
+            Tuner
+        </a>
+    </div>
+    <div id="productlist" class="product">
+        
+
+    </div>
+   </div>
+
+   <div id="modalDesc" class="modal" style="display: none;">
+        <div onclick="closeModal()" class="modal-bg"></div>
+        <div class="modal-page">
+            <h2>Detail</h2>
+            <br>
+            <div class="modal-content">
+                <img id="mdd-img" class="modal-img" src="/images/tuner.png" alt="">
+                <div class="modal-detail">
+                   <p id="mdd-name" style="font-size: 1.5vw;">Tuner</p>
+                   <p id="mdd-price" style="font-size: 1.2vw;">500 dollar</p>
+                   <br>
+                   <p id="mdd-desc" style="color: #adadad;">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                   <br>
+                   <div class="btn-control">
+                        <button onclick="closeModal()" class="btn">
+                            Close
+                        </button>
+                        <button onclick="addtocart()" class ="btn btn-buy">
+                            Buy
+                        </button>
+
+                   </div>
+                </div>
+            </div>
+        </div>
+   </div>
+
+   <div id="modalCart" class="modal" style="display: none;">
+    <div onclick="closeModal()" class="modal-bg"></div>
+    <div class="modal-page">
+      <h2>My cart</h2>
+      <br>
+      <div id="mycart" class="cartlist">
+
+      </div>
+      <div class="btn-control">
+        <button onclick="closeModal()" class="btn">
+          Cancel
+        </button>
+        <button class="btn btn-buy">
+          Buy
+        </button>
+      </div>    
+    </div>
+  </div>
+
+<script>
+    var product = [{
+        id: 1,
+        img: '/images/tuner.png',
+        name: 'Tuner',
+        price: 30,
+        description: 'Nike Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam, labore dolorum optio ad consequatur cupiditate!',
+        type: 'tuner'
+    }, {
+        id: 2,
+        img: '/images/string.png',
+        name: 'String',
+        price: 15,
+        description: 'Adidas shirt Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam, labore dolorum optio ad consequatur cupiditate!',
+        type: 'string'
+    }, {
+        id: 3,
+        img: '/images/capo.png',
+        name: 'capo',
+        price: 40,
+        description: 'Adidas shoe Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam, labore dolorum optio ad consequatur cupiditate!',
+        type: 'other'
+    }];
+    
+    // [{},{},{}] // length = 3
+    
+    $(document).ready(() => {
+        var html = '';
+        for (let i = 0; i < product.length; i++) {
+            html += `<div onclick="openProductDetail(${i})" class="product-items ${product[i].type}">
+                        <img class="product-img" src="${product[i].img}" alt="">
+                        <p style="font-size: 1.2vw;">${product[i].name}</p>
+                        <p stlye="font-size: 1vw;">${ numberWithCommas(product[i].price) } Dollar</p>
+                    </div>`;
+        }
+        $("#productlist").html(html);
+    
+    })
+    
+    function numberWithCommas(x) {
+        x = x.toString();
+        var pattern = /(-?\d+)(\d{3})/;
+        while (pattern.test(x))
+            x = x.replace(pattern, "$1,$2");
+        return x;
+    }
+    
+    function searchsomething(elem) {
+        // console.log('#'+elem.id)
+        var value = $('#'+elem.id).val()
+        console.log(value)
+    
+        var html = '';
+        for (let i = 0; i < product.length; i++) {
+            if( product[i].name.includes(value) ) {
+                html += `<div onclick="openProductDetail(${i})" class="product-items ${product[i].type}">
+                        <img class="product-img" src="${product[i].img}" alt="">
+                        <p style="font-size: 1.2vw;">${product[i].name}</p>
+                        <p stlye="font-size: 1vw;">${ numberWithCommas(product[i].price) } Dollar</p>
+                    </div>`;
+            }
+        }
+        if(html == '') {
+            $("#productlist").html(`<p>Not found product</p>`);
+        } else {
+            $("#productlist").html(html);
+        }
+    
+    }
+    
+    function searchproduct(param) {
+        console.log(param)
+        $(".product-items").css('display', 'none')
+        if(param == 'all') {
+            $(".product-items").css('display', 'block')
+        }
+        else {
+            $("."+param).css('display', 'block')
+        }
+    }
+    
+    var productindex = 0;
+    function openProductDetail(index) {
+        productindex = index;
+        console.log(productindex)
+        $("#modalDesc").css('display', 'flex')
+        $("#mdd-img").attr('src', product[index].img);
+        $("#mdd-name").text(product[index].name)
+        $("#mdd-price").text( numberWithCommas(product[index].price) + ' Dolla')
+        $("#mdd-desc").text(product[index].description)
+    }
+    
+    function closeModal() {
+        $(".modal").css('display','none')
+    }
+    
+
+    function addtocart() {
+        let cart = [];
+        var pass = true;
+    
+        for (let i = 0; i < cart.length; i++) {
+            if( productindex == cart[i].index ) {
+                console.log('found same product')
+                cart[i].count++;
+                pass = false;
+            }
+        }
+    
+        if(pass) {
+            var obj = {
+                name: product[productindex].name,
+                price: product[productindex].price
+            };
+            // console.log(obj)
+            cart.push(obj)
+        }
+        console.log(cart)
+    
+        Swal.fire({
+            icon: 'success',
+            title: 'Add ' + product[productindex].name + ' to cart !'
+        })
+
+        $("#cartcount").css('display','flex').text(cart.length)
+
+        $.ajax({
+            url: '/order_guitar_acc', 
+            type: 'POST',
+            data: JSON.stringify({ cart: cart }),
+            contentType: 'application/json; charset=utf-8',
+            success: function() {
+                console.log('cart saved in session')
+            },
+            error: function() {
+                console.log('error saving cart in session')
+            }
+        });
+        
+        document.getElementById("cart").value = JSON.stringify.cart;
+    }
+    
+    function openCart() {
+        $('#modalCart').css('display','flex')
+        rendercart();
+    }
+    
+    function rendercart() {
+        if(cart.length > 0) {
+            var html = '';
+            for (let i = 0; i < cart.length; i++) {
+                html += `<div class="cartlist-items">
+                            <div class="cartlist-left">
+                                <img src="${cart[i].img}" alt="">
+                                <div class="cartlist-detail">
+                                    <p style="font-size: 1.5vw;">${cart[i].name}</p>
+                                    <p style="font-size: 1.2vw;">${ numberWithCommas(cart[i].price * cart[i].count) } Dollar</p>
+                                </div>
+                            </div>
+                            <div class="cartlist-right">
+                                <p onclick="deinitems('-', ${i})" class="btnc">-</p>
+                                <p id="countitems${i}" style="margin: 0 20px;">${cart[i].count}</p>
+                                <p onclick="deinitems('+', ${i})" class="btnc">+</p>
+                            </div>
+                        </div>`;
+            }
+            $("#mycart").html(html)
+        }
+        else {
+            $("#mycart").html(`<p>Not found product list</p>`)
+        }
+    }
+    
+    function deinitems(action, index) {
+        if(action == '-') {
+            if(cart[index].count > 0) {
+                cart[index].count--;
+                $("#countitems"+index).text(cart[index].count)
+    
+                if(cart[index].count <= 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Are you sure to delete?',
+                        showConfirmButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: 'Delete',
+                        cancelButtonText: 'Cancel'
+                    }).then((res) => {
+                      if(res.isConfirmed) {
+                         cart.splice(index, 1) 
+                         console.log(cart)
+                         rendercart();
+                         $("#cartcount").css('display','flex').text(cart.length)
+                         
+                         if(cart.length <= 0) {
+                            $("#cartcount").css('display','none')
+                         }
+                         document.getElementById("cart").value = JSON.stringify(cart);
+                      }  
+                      else {
+                        cart[index].count++;
+                        $("#countitems"+index).text(cart[index].count)
+                        rendercart();
+                      }
+                    })
+                }
+                rendercart();
+            }
+            
+        }
+        else if(action == '+') {
+            cart[index].count++;
+            $("#countitems"+index).text(cart[index].count)
+            rendercart();
+        }
+    }
+</script>
+    <form action="/order_guitar_acc" method="POST" enctype="multipart/form-data"></form>
+    <input type="hidden" name="cart" id="cart" value="">
+  </form>
+</body>
+</html>

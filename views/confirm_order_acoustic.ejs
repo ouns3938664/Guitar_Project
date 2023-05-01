@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styleConfirm.css">
+    <title>Confirm Order</title>
+  </head>
+  <body>
+    <h1>Please confirm your order</h1>
+    <ul id="guitarDetails">
+      <li><span class="detail-title">Type:</span> <%= guitar.type %></li>
+      <li><span class="detail-title">Top:</span> <%= guitar.top %></li>
+      <li><span class="detail-title">Body:</span> <%= guitar.body %></li>
+      <li><span class="detail-title">Neck:</span> <%= guitar.neck %></li>
+      <li><span class="detail-title">Bridge:</span> <%= guitar.bridge %></li>
+      <li><span class="detail-title">Cost:</span> <%= guitar.cost %></li>
+    </ul>
+    <div class="col">
+      <div class="col1">
+
+        <% if (guitar.top === 'Maple') { %>
+          <a class="card card1" style="background-image: url('images/wood/maple.jpg')"></a>
+        <% } else if (guitar.top === 'Mahogany') { %>
+          <a class="card card1" style="background-image: url('images/wood/mahogany.jpg')"></a>
+        <% } else if (guitar.top === 'Acacia') { %>
+          <a class="card card1" style="background-image: url('images/wood/acacia.jpg')"></a>
+        <% } else if (guitar.top === 'Walnut') { %>
+        <a class="card card1" style="background-image: url('images/wood/walnut.jpg')"></a>
+        <% } else { %>          
+          <a class="card card1"></a>
+        <% } %>
+
+        <% if (guitar.body === 'Maple') { %>
+            <a class="card card2" style="background-image: url('images/wood/maple.jpg')"></a>
+          <% } else if (guitar.body === 'Mahogany') { %>
+            <a class="card card2" style="background-image: url('images/wood/mahogany.jpg')"></a>
+          <% } else if (guitar.body === 'Acacia') { %>
+            <a class="card card2" style="background-image: url('images/wood/acacia.jpg')"></a>
+          <% } else if (guitar.body === 'Walnut') { %>
+          <a class="card card2" style="background-image: url('images/wood/walnut.jpg')"></a>
+          <% } else { %>          
+            <a class="card card2"></a>
+          <% } %>
+
+          <% if (guitar.neck === 'Ebony') { %>
+            <a class="card card3" style="background-image: url('images/neck/ebony.jpg')"></a>
+          <% } else if (guitar.neck === 'Maple') { %>
+            <a class="card card3" style="background-image: url('images/neck/maple.jpg')"></a>
+          <% } else if (guitar.neck === 'Mahogany') { %>
+            <a class="card card3" style="background-image: url('images/neck/mahogany.jpg')"></a>
+          <% } else { %>
+            <a class="card card3"></a>
+          <% } %>
+
+          <% if (guitar.bridge === 'Bone') { %>
+            <a class="card card4" style="background-image: url('images/bridge/bone.jpg')"></a>
+          <% } else if (guitar.bridge === 'Wood') { %>
+            <a class="card card4" style="background-image: url('images/bridge/wood.jpg')"></a>
+          <% } else if (guitar.bridge === 'Plastic') { %>
+            <a class="card card4" style="background-image: url('images/bridge/plastic.jpg')"></a>
+          <% } else { %>          
+            <a class="card card4"></a>
+          <% } %>
+
+      </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" action="/confirm_order_acoustic">
+
+        <input style = "margin-right:50px" type="text" name="address" placeholder="Enter your address">
+        
+        <div class="form-container">
+            <label for="photo-upload" class="upload-label">Upload Slip:</label>
+            <input type="file" id="photo-upload" name="photo" accept="image/*">
+      </div>
+
+      <input type="hidden" name="guitar" value="<%= JSON.stringify(guitar)%>">
+      <button type="submit" name="confirmed" value="true">Ok</button>
+      <button type="submit" name="confirmed" value="false" class="cancel">Cancel</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+body {
+    background-image: linear-gradient(rgba(33, 33, 33, 0.7), rgba(29, 29, 29, 0.7)), url(images/b2.jpg); 
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    padding-left: 8%;
+    padding-right : 8%;
+    box-sizing: border-box;
+}
+.container{
+    height: 100vh;
+}
+h1{
+    color: black;
+    font-size:40px;
+    padding-top: 5%;
+    text-shadow: 2px 2px 2px #000000;
+}
+h2{
+    color: aliceblue;
+    font-size: 60px;
+    padding-top: 0.1%;
+    padding-left: 3%;
+    white-space: nowrap; 
+}
+h2:hover{
+    color: aliceblue;
+    text-shadow: 5px 5px 5px #9292c0;
+    font-size: 65px;
+    padding-top: 0.1%;
+    padding-left: 3%; 
+    white-space: nowrap; 
+}
+p{
+    color: rgb(28, 28, 28);
+    font-size:30px;
+    padding-top: 0.5%;
+    padding-left: 10%;  
+}
+#gTop{
+    color: rgb(28, 28, 28);
+    font-size:25px;
+    padding-top: 0.5%;
+    padding-left: 1%;
+}
+#gBody{
+    color: rgb(28, 28, 28);
+    font-size:25px;
+    padding-top: 0.5%;
+    padding-left: 1%; 
+}
+#gNeck{
+    color: rgb(28, 28, 28);
+    font-size:25px;
+    padding-top: 0.5%;
+    padding-left: 1%; 
+}
+#gBridge{
+    color: rgb(28, 28, 28);
+    font-size:25px;
+    padding-top: 0.5%;
+    padding-left: 1%; 
+}
+#gCost{
+    color: rgb(28, 28, 28);
+    font-size:25px;
+    padding-top: 0.5%;
+    padding-left: 1%;
+}
+.form-group{
+    color: aliceblue;
+    font-size:23px;
+    padding-top: 0.5%;
+}
+.form-control{
+    color: black;
+    font-size:24px;
+    padding-top: 0%;
+    background-color: aliceblue;
+    box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.2);
+    border: 1.5px solid black;
+}
+.form-control:hover{
+    color: aliceblue;
+    font-size:24px;
+    padding-top: 0%;
+    background-color: black;
+    box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.2);
+    border: 1.5px solid aliceblue;
+}
+option{
+    font-size:24px;
+    color: rgb(52, 48, 49);
+}
+.btn-primary{
+    color: black;
+    background: aliceblue;
+    border: 1.5px solid black;
+    padding-top: 0.2%;
+    font-size:20px; 
+}
+.btn-primary:hover{
+    color: aliceblue;
+    background: black;
+    border: 1.5px solid aliceblue;
+    padding-top: 0.2%;
+    font-size:20px;  
+}

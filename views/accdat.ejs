@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Accessories Data</title>
+    <link rel="stylesheet" href="/styleSlip.css">
+    <script src="Show_DB.js"></script>
+  </head>
+  <body>
+    <h1>Slip Data</h1>
+    <div class="container">
+        <button onclick="filterForAcc('capo')">Capo</button>
+        <button onclick="filterForAcc('String')">String</button>
+        <button onclick="filterForAcc('Tuner')">Tuner</button>
+        <button onclick="showAll()">Show All</button>
+        <a href="/order"><button>Back</button></a>
+      </div>
+    <table id="guitarTable">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Cost</th>
+          <th>ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% obj.print.forEach(item => { %>
+        <tr class="guitar-row">
+            <td><%= item.type %></td>
+            <td><%= item.cost %></td>
+            <td><%= item.id %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>

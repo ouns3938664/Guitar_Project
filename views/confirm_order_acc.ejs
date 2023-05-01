@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styleConfirm.css">
+    <title>Confirm Order</title>
+  </head>
+  <body>
+    <h1>Please confirm your order</h1>
+    <ul id="guitarDetails">
+      <% if (cart) { %>
+        <h2>Your Cart:</h2>
+        <ul>
+          <% cart.forEach(function(item) { %>
+            <li><%= item.name %> - <%= item.price %></li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>No items in cart.</p>
+      <% } %>      
+    </ul>
+
+    <form method="post" enctype="multipart/form-data" action="/confirm_order_acc">
+
+      <input style = "margin-right:50px" type="text" name="address" placeholder="Enter your address">
+
+      <div class="form-container">
+        <label for="photo-upload" class="upload-label">Upload Slip:</label>
+        <input type="file" id="photo-upload" name="photo" accept="image/*">
+      </div>
+
+      <input type="hidden" name="cart" value="<%= JSON.stringify(cart)%>">
+      <button type="submit" name="confirmed" value="true">Ok</button>
+      <button type="submit" name="confirmed" value="false" class="cancel">Cancel</button>
+    </form>
+  </body>
+</html>
